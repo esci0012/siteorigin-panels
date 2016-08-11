@@ -1247,10 +1247,6 @@ function siteorigin_panels_the_widget( $widget_info, $instance, $grid, $cell, $p
 	if( strpos($title_html, '{{title}}') !== false ) {
 		list( $before_title, $after_title ) = explode( '{{title}}', $title_html, 2 );
 	}
-	else {
-		$before_title = '<h3 class="widget-title">';
-		$after_title = '</h3>';
-	}
 
 	$args = array(
 		'before_widget' => '<div class="' . esc_attr( implode( ' ', $classes ) ) . '" id="' . $id . '" data-index="' . $widget_info['widget_index'] . '">',
