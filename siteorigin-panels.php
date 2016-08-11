@@ -1022,6 +1022,13 @@ function siteorigin_panels_render( $post_id = false, $enqueue_css = true, $panel
 	}
 
 	ob_start();
+        
+        
+        //display stylesheet
+        $link_style = '<link rel="stylesheet" id="siteorigin-panels-front-css" href="' . plugin_dir_url(__FILE__) . 'css/front.css" type="text/css" media="all">';
+        echo ($link_style);
+        
+        echo ('<style type="text/css" media="all" id="siteorigin-panels-grids-wp_head">'.siteorigin_panels_generate_css( get_the_ID() ).'</style>');
 
 	// Add the panel layout wrapper
 	$panel_layout_classes = apply_filters( 'siteorigin_panels_layout_classes', array(), $post_id, $panels_data );
@@ -1337,7 +1344,7 @@ function siteorigin_panels_enqueue_styles(){
 	// Register the style to support possible lazy loading
 	wp_register_style('siteorigin-panels-front', plugin_dir_url(__FILE__) . 'css/front.css', array(), SITEORIGIN_PANELS_VERSION );
 
-	if( is_singular() && get_post_meta( get_the_ID(), true ) != '' ) {
+        if( is_singular() && get_post_meta( get_the_ID(), true ) != '' ) {
 		wp_enqueue_style('siteorigin-panels-front');
 
 		// Enqueue the general layout CSS
