@@ -1262,10 +1262,12 @@ function siteorigin_panels_the_widget( $widget_info, $instance, $grid, $cell, $p
 	$title_html = siteorigin_panels_setting( 'title-html' );
 	if( strpos($title_html, '{{title}}') !== false ) {
 		list( $before_title, $after_title ) = explode( '{{title}}', $title_html, 2 );
+	} else {
+		$instance["show_title"] = 0;
 	}
 
 	$args = array(
-		'before_widget' => '<div class="' . esc_attr( implode( ' ', $classes ) ) . '" id="' . $id . '" data-index="' . $widget_info['widget_index'] . '">',
+		'before_widget' => '<div class="' . esc_attr( implode( ' ', $classes ) ) . '" id="' . $id . '" data-index="' . $widget_info['widget_index'] . '" widget-title="' . $instance["title"] .'">',
 		'after_widget' => '</div>',
 		'before_title' => $before_title,
 		'after_title' => $after_title,
